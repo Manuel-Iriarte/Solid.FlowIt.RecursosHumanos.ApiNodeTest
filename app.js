@@ -31,7 +31,7 @@ apiTestRouter.route('/security/login')
     };
 
     var token = jwt.sign(payload, app.get('misecreto'), {
-        expiresIn: 60*5 // 5 minutos
+        expiresIn: 60*60 // 5 minutos
       });
 
     res.json({

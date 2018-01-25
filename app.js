@@ -24,20 +24,24 @@ app.use(morgan('dev'));
 
 apiTestRouter.route('/security/login')
 .post(function(req, res){
-    console.log(req.body.email);
+    console.log(req.body);
 
-    var payload = {
-        email : req.body.email
-    };
-
-    var token = jwt.sign(payload, app.get('misecreto'), {
-        expiresIn: 60*60 // 5 minutos
-      });
-
-    res.json({
-        token: token,
-        expiration:token.expiration
-    })
+    if(req.body.Email === '1' && req.body.Password === '1'){
+        var payload = {
+            email : req.body.email
+        };
+    
+        var token = jwt.sign(payload, app.get('misecreto'), {
+            expiresIn: 60*60 // 5 minutos
+          });
+    
+        res.json({
+            token: token,
+            expiration:token.expiration
+        })
+    }else{
+        res.send(401);
+    }
 });
 
 apiTestRouter.route('/areafuncional')

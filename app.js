@@ -28,13 +28,15 @@ apiTestRouter.route('/security/login')
 
     if(req.body.Email === '1' && req.body.Password === '1'){
         var payload = {
-            email : req.body.email
+            emailOtro : req.body.Email,
+            userName: "Manuel"
         };
-    
+        console.log(payload);
         var token = jwt.sign(payload, app.get('misecreto'), {
             expiresIn: 60*60 // 5 minutos
           });
-    
+          console.log(token);
+
         res.json({
             token: token,
             expiration:token.expiration
@@ -44,7 +46,7 @@ apiTestRouter.route('/security/login')
     }
 });
 
-apiTestRouter.route('/areafuncional')
+apiTestRouter.route('/areasfuncionales')
     .get(function(req, res){
         var respuesta = 
         [{
@@ -67,7 +69,7 @@ apiTestRouter.route('/areafuncional')
         res.json(respuesta)
     });
 
-apiTestRouter.route('/proceso/:id')
+apiTestRouter.route('/areasfuncionales/:id/procesos')
     .get(function(req, res){
         var respuesta = [];
 
@@ -108,6 +110,28 @@ apiTestRouter.route('/proceso/:id')
             ]
         }
         
+
+        res.json(respuesta);
+    })
+
+    apiTestRouter.route('/procesos/:id/actividades')
+    .get(function(req, res){
+        var respuesta = [];
+
+        console.info(req.params);
+
+        if(req.params.id === '12' ){
+            respuesta = 
+                
+                { // Actividad
+                    "Nombre": "123 Main St",
+                    "Id": 12
+                    },
+                    { // Actividad
+                    "Nombre": "123 Main St",
+                    "Id": 12
+                    }
+            }
 
         res.json(respuesta);
     })

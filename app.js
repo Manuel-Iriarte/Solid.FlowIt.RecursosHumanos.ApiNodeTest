@@ -121,18 +121,29 @@ apiTestRouter.route('/areasfuncionales/:id/procesos')
         console.info(req.params);
 
         if(req.params.id === '12' ){
-            respuesta = 
-                
-                { // Actividad
-                    "Nombre": "123 Main St",
-                    "Id": 12
-                    },
-                    { // Actividad
-                    "Nombre": "123 Main St",
-                    "Id": 12
-                    }
+            respuesta = [{ // GrupoActividad
+                "TipoGrupoActividad": 1,
+                "grupoActividades": [
+                  {
+                    "Id": 0,
+                    "Nombre": "Solicitud Vacaciones"
+                  }
+                ]
+              },
+              { // GrupoActividad
+                "TipoGrupoActividad": 2,
+                "grupoActividades": [
+                  {
+                    "Id": 1,
+                    "Nombre": "Solicitud Vacaciones 1"
+                  },
+                  {
+                    "Id": 2,
+                    "Nombre": "Solicitud Vacaciones 2"
+                  }
+                ]
+              }]
             }
-
         res.json(respuesta);
     })
 
